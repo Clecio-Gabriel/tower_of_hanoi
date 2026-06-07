@@ -1,0 +1,17 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "windows",
+      "displayName": "Configuração para Windows (MinGW)",
+      "generator": "MinGW Makefiles",
+      "binaryDir": "${sourceDir}/build"
+    },
+    {
+      "name": "linux",
+      "displayName": "Configuração para Linux",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build"
+    }
+  ]
+}

@@ -1,6 +1,14 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 4.3)
 project(TOWER_OF_HANOI VERSION 1.0 LANGUAGES CXX)
 
+if(WIN32)
+    add_compile_definitions(NOMINMAX)
+    
+    if(MSVC)
+        add_compile_options(/W4)
+    endif()
+endif()
+
 set(HANOI_EXE hanoi_bin)
 add_executable(${HANOI_EXE} src/main/main.cpp)
 target_compile_options( ${HANOI_EXE} PRIVATE -Wall -pedantic -Werror -g)
