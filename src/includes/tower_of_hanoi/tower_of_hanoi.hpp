@@ -2,13 +2,17 @@
 #define TOWER_OF_HANOI
 #include "state.hpp"
 #include "stack.hpp"
+#include <iostream>
+#include <string>
 #include <vector>
 
-class tower_of_hanoi{
+void usage(std::string msg = "");
+
+class Tower_of_Hanoi{
 
     public:
 
-    tower_of_hanoi(){
+    Tower_of_Hanoi(){
 
     };
 
