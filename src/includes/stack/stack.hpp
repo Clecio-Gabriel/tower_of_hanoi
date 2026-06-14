@@ -16,8 +16,6 @@ class Stack{
         
         explicit Node(T input) : //BASE CONSTRUCTOR
         data(input), next(nullptr) {};
-
-        bool operator==(const Node& rhs) const { return this->data==rhs.data; };
     };
 
     //===ALIASES
@@ -60,11 +58,35 @@ public:
     }
     
     //=== [II] MODIFIERS
-    void push(const_reference input);
-    void pop();
-    void clear();
+    void push(const_reference input){
+        Node* inp = new Node(input);
+        inp->next = head;
+        head = inp;
+    }
+    void pop(){
+        Node* new_head {head->next};
+        delete head;
+        head = new_head;
+    }
+    void clear(){
+        if (head==nullptr){
+            return;
+        }
+
+        while (head != nullptr){
+            Node* next {head->next};
+
+            delete head;
+
+            head = next;
+        }
+
+        size = 0;
+    };
 
     //=== [III] GETTERS
+    const_reference peek () const{ return head->data; }
+    bool empty() const { return head==nullptr; }
     size_type get_size() const { return this->size; }
     friend std::ostream &operator<<(std::ostream & os, const Stack<T> &list){
         os << "{";
@@ -82,18 +104,6 @@ public:
 
         return os;
     }
-    /*needed functions:
-    
-        modifiers:
-            push
-            pop
-            clear
-        
-        getters:
-            peek_head
-            [[nodiscard]] size
-    */
-
 
 };
 
