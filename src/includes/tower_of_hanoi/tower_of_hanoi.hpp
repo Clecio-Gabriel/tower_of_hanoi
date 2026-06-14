@@ -2,7 +2,6 @@
 #define TOWER_OF_HANOI
 #include "state.hpp"
 #include "stack.hpp"
-#include <iostream>
 #include <string>
 #include <vector>
 
