@@ -83,6 +83,9 @@ public:
 
         size = 0;
     };
+    void move_head_to(Stack& ){
+
+    }
 
     //=== [III] GETTERS
     const_reference peek () const{ return head->data; }

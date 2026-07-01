@@ -3,7 +3,7 @@
 #define YES 1
 #define NO 0
 
-#define STACK_TEST YES
+#define STACK_TEST NO
 
 
 int main(){
