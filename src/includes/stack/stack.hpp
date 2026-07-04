@@ -58,7 +58,31 @@ public:
     Stack(const Stack& cpy)  //COPY CONSTRUCTOR
     :   head(nullptr), size(cpy.size)
     { 
+        auto cpy_it {cpy.head};
+
+        while (cpy_it != nullptr){
+            Node* data = new Node(cpy_it->data);
+            data->next = this->head;
+            this->head = data;
+
+            cpy_it = cpy_it->next;
+        }
         
+        Node* prev {nullptr};
+        Node* curr {this->head};
+        Node* next {this->head->next};
+
+        while (curr!=nullptr){
+            curr->next = prev;
+            prev = curr;
+
+            curr = next;
+
+            if (next==nullptr) break;
+            next = next->next;
+        }
+
+        this->head = prev;
     }
     Stack& operator=(const Stack& other){   //EQUAL OPERATOR
         if (this == &other){

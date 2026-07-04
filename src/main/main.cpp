@@ -3,7 +3,7 @@
 #define YES 1
 #define NO 0
 
-#define STACK_TEST YES
+#define STACK_TEST NO
 
 
 int main(){
@@ -35,7 +35,9 @@ int main(){
 
     if (a != c) std::cout << "a == c is False\n";
 
-    std::cout << "c:" << c << '\n'
+    c.push(28);
+
+    std::cout << "c:" << c << ' ' << c.get_size() << '\n'
               << "a:" << a << "\n\n";
     c = a;
     std::cout << "After using the equal constructor:\n"
@@ -44,6 +46,9 @@ int main(){
     
     std::cout << '\n' << a.peek() << ' ' << c.peek() << '\n';
 
+    sc::Stack d(a);
+
+    std::cout << "\nd:" << d << ' ' << d.get_size() << '\n';
     #endif
 
     Tower_of_Hanoi tower;
