@@ -65,6 +65,7 @@ public:
             return *this;
         }
 
+        // [ 1 ] Copy the data
         this->size = other.size;
         this->head = nullptr;
 
@@ -77,6 +78,23 @@ public:
             
             cpy = cpy->next;
         }
+
+        // [ 2 ] Invert the order
+        Node* prev {nullptr};
+        Node* curr {this->head};
+        Node* next {this->head->next};
+
+        while (curr!=nullptr){
+            curr->next = prev;
+            prev = curr;
+
+            curr = next;
+
+            if (next==nullptr) break;
+            next = next->next;
+        }
+
+        this->head = prev;
 
         return *this;
     }
