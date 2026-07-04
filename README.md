@@ -1,3 +1,9 @@
+# AUTHOR INFORMATIONS
+
+**Name:** Clécio Gabriel
+
+**Class:** 
+
 # How to compile using CMake:
 
 - [ 1 ] Depending on your system, you'll need to use this command in

@@ -3,7 +3,7 @@
 #define YES 1
 #define NO 0
 
-#define STACK_TEST NO
+#define STACK_TEST YES
 
 
 int main(){
@@ -11,8 +11,8 @@ int main(){
     usage();
 
     #if STACK_TEST
-    Stack a ({1,2,3});
-    Stack<int> b;
+    sc::Stack a ({1,2,3});
+    sc::Stack<int> b;
     std::cout << a << "\n" << a.peek() << '\n' << a.get_size() << "\n" << b.get_size() << '\n';
     a.clear();
     if (a.empty()) std::cout << "true\n";
@@ -22,12 +22,28 @@ int main(){
     a.push(10);
     a.push(9);
     a.push(8);
-    std::cout << a << '\n';
+    std::cout << a << ' ' << a.get_size() << '\n';
 
     std::cout << a.peek() << "\n";
 
     a.pop();
-    std::cout << a << '\n';
+    std::cout << a << ' ' << a.get_size() << '\n';
+
+    if (a == a) std::cout << "True\n";
+
+    sc::Stack c ({7,31});
+
+    if (a != c) std::cout << "a == c is False\n";
+
+    std::cout << "c:" << c << '\n'
+              << "a:" << a << "\n\n";
+    c = a;
+    std::cout << "After using the equal constructor:\n"
+              << "c:" << c << '\n'
+              << "a:" << a << '\n';
+    
+    std::cout << '\n' << a.peek() << ' ' << c.peek() << '\n';
+
     #endif
 
     Tower_of_Hanoi tower;

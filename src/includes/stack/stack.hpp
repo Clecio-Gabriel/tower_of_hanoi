@@ -5,6 +5,7 @@
 #include <iostream>
 #include <initializer_list>
 
+namespace sc{
 template <typename T>
 class Stack{
 
@@ -22,8 +23,6 @@ class Stack{
 public:
     using value_type = T;
     using size_type = size_t;
-    using pointer = value_type *;
-    using reference = value_type&;
     using const_reference = const value_type&;
 
 private:
@@ -33,7 +32,7 @@ private:
 
 public:
 
-    //=== [I] SPECIAL MEMBERS(3 OF THEM)
+    //=== [I] SPECIAL MEMBERS(5 OF THEM)
     explicit Stack() : head(nullptr), size(0) {}    //BASE CONSTRUCTOR;
     virtual ~Stack(){  //DESTRUCTOR
         Node* curr = head;
@@ -43,7 +42,7 @@ public:
             curr = next;
         }
     }
-    Stack(const std::initializer_list<T>& il)  //INITIALIZER_LIST CONSTRUCTOR
+    Stack(const std::initializer_list<value_type>& il)  //INITIALIZER_LIST CONSTRUCTOR
     : head(nullptr), size(il.size()){   
         auto cpy {il.end() - 1};
         auto end {il.begin()};
@@ -56,17 +55,44 @@ public:
             cpy--;
         }
     }
-    
+    Stack(const Stack& cpy)  //COPY CONSTRUCTOR
+    :   head(nullptr), size(cpy.size)
+    { 
+        
+    }
+    Stack& operator=(const Stack& other){   //EQUAL OPERATOR
+        if (this == &other){
+            return *this;
+        }
+
+        this->size = other.size;
+        this->head = nullptr;
+
+        auto cpy {other.head};
+        
+        while (cpy != nullptr){
+            Node* data = new Node(cpy->data);
+            data->next = this->head;
+            this->head = data;
+            
+            cpy = cpy->next;
+        }
+
+        return *this;
+    }
+
     //=== [II] MODIFIERS
     void push(const_reference input){
         Node* inp = new Node(input);
         inp->next = head;
         head = inp;
+        size++;
     }
     void pop(){
         Node* new_head {head->next};
         delete head;
         head = new_head;
+        size--;
     }
     void clear(){
         if (head==nullptr){
@@ -83,9 +109,6 @@ public:
 
         size = 0;
     };
-    void move_head_to(Stack& ){
-        
-    }
 
     //=== [III] GETTERS
     const_reference peek () const{ return head->data; }
@@ -108,6 +131,48 @@ public:
         return os;
     }
 
+    //=== [IV] COMPARISON OPERATORS
+    bool operator==(const Stack& rhs){
+        if (this->size != rhs.size){
+            return false;
+        }
+
+        auto lhs_it {this->head};
+        auto rhs_it {rhs.head};
+
+        while (lhs_it != nullptr){
+            if (lhs_it->data != rhs_it->data){
+                return false;
+            }
+
+            lhs_it = lhs_it->next;
+            rhs_it = rhs_it->next;
+        }
+
+        return true;
+    }
+    bool operator!=(const Stack& rhs){
+        if (this->size != rhs.size){
+            return true;
+        }
+
+        auto lhs_it {this->head};
+        auto rhs_it {rhs.head};
+
+        while (lhs_it != nullptr){
+            if (lhs_it->data != rhs_it->data){
+                return true;
+            }
+
+            lhs_it = lhs_it->next;
+            rhs_it = rhs_it->next;
+        }
+
+        return false;
+    }
+
 };
+
+}
 
 #endif
