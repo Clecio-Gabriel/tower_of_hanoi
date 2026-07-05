@@ -67,7 +67,7 @@ public:
     public:
         using iterator_category = std::bidirectional_iterator_tag;
         using pointer = const Node*;
-        using referente = const T&;
+        using reference = const T&;
 
     private:
         pointer m_ptr;
@@ -80,14 +80,16 @@ public:
         const_iterator& operator=(const const_iterator& other) = default;
 
         // [II] NAVIGATION METHODS
-        iterator &operator++(){
+        const_iterator &operator++(){
+            m_ptr = m_ptr->next;
+            return *this;
         }
-        iterator operator++(int){
-
+        const_iterator operator++(int){
+            const_iterator ret {*this};
+            m_ptr = m_ptr->next;
+            return ret;
         }
-        iterator operator*(){
-
-        }
+        reference operator*() const { return m_ptr->data; };
 
         // [III] COMPARISON METHODS
         bool operator==(const iterator& rhs) const  { return this->m_ptr == rhs.m_ptr; };

@@ -3,7 +3,7 @@
 #define YES 1
 #define NO 0
 
-#define STACK_TEST NO
+#define STACK_TEST YES
 
 
 int main(){
@@ -53,6 +53,14 @@ int main(){
     sc::Stack p = a;
     sc::Stack<int>::iterator iter (p.begin());
     std::cout << *iter << ' ' << *(++iter) << "\n\n";
+
+    sc::Stack test ({1,2,3,4,5});
+    sc::Stack<int>::const_iterator c_iter (test.cbegin());
+    for (int i = 0; i < 5; i++){
+        std::cout << *(c_iter++);
+        if (i < 4) std::cout << ' ';
+    }
+    std::cout << '\n';
     #endif
 
     size_t discs{0};
