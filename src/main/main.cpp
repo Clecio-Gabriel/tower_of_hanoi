@@ -49,9 +49,18 @@ int main(){
     sc::Stack d(a);
 
     std::cout << "\nd:" << d << ' ' << d.get_size() << '\n';
+
+    sc::Stack p = a;
+    sc::Stack<int>::iterator iter (p.begin());
+    std::cout << *iter << ' ' << *(++iter) << "\n\n";
     #endif
 
-    Tower_of_Hanoi tower;
+    size_t discs{0};
+
+    std::cout << "  How many discs do you want the Tower of Hanoi to have?  ";
+    std::cin >> discs;
+
+    Tower_of_Hanoi tower(discs);
     tower.solve();
 
 

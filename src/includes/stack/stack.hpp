@@ -31,6 +31,67 @@ private:
     size_type size;
 
 public:
+    class iterator{
+    public:
+        using iterator_category = std::bidirectional_iterator_tag;
+        using pointer = Node*;
+        using reference = T&;
+
+    private:
+        pointer m_ptr;
+
+    public:
+        // [I] SPECIAL MEMBERS(3 OF THEM)
+        iterator(pointer ptr){ m_ptr = ptr; }
+        iterator(const iterator& other) : m_ptr(other.m_ptr) {};
+        iterator& operator=(const iterator& other) = default;
+
+        // [II] NAVIGATION METHODS
+        iterator &operator++(){
+            m_ptr = m_ptr->next;
+            return *this;
+        }
+        iterator operator++(int){
+            iterator ret {*this};
+            m_ptr = m_ptr->next;
+            return ret;
+        }
+        reference operator*(){ return m_ptr->data; };
+
+        // [III] COMPARISON METHODS
+        bool operator==(const iterator& rhs) const  { return this->m_ptr == rhs.m_ptr; };
+
+    };
+
+    class const_iterator{
+    public:
+        using iterator_category = std::bidirectional_iterator_tag;
+        using pointer = const Node*;
+        using referente = const T&;
+
+    private:
+        pointer m_ptr;
+
+    public:
+
+        // [I] SPECIAL MEMBERS(3 OF THEM)
+        const_iterator(pointer ptr){ m_ptr = ptr; }
+        const_iterator(const const_iterator& other) : m_ptr(other.m_ptr) {};
+        const_iterator& operator=(const const_iterator& other) = default;
+
+        // [II] NAVIGATION METHODS
+        iterator &operator++(){
+        }
+        iterator operator++(int){
+
+        }
+        iterator operator*(){
+
+        }
+
+        // [III] COMPARISON METHODS
+        bool operator==(const iterator& rhs) const  { return this->m_ptr == rhs.m_ptr; };
+    };
 
     //=== [I] SPECIAL MEMBERS(5 OF THEM)
     explicit Stack() : head(nullptr), size(0) {}    //BASE CONSTRUCTOR;
@@ -212,6 +273,10 @@ public:
 
         return false;
     }
+
+    //=== [V] ITERATOR METHOD
+    iterator begin(){ return iterator{head}; }
+    const_iterator cbegin() const { return const_iterator{head}; }
 
 };
 
