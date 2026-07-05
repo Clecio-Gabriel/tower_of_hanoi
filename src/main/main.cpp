@@ -52,7 +52,6 @@ int main(){
     #endif
 
     Tower_of_Hanoi tower;
-    tower.visualize();
     tower.solve();
 
 

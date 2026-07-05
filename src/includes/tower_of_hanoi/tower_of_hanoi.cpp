@@ -14,5 +14,7 @@ void Tower_of_Hanoi::visualize() const{
 }
 
 void Tower_of_Hanoi::solve(){
+    this->visualize();
+
     usage("[solve]: NOT IMPLEMENTED YET.\n");
 }
