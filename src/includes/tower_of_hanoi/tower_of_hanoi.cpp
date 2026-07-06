@@ -14,6 +14,11 @@ void usage(std::string msg){
     }
 }
 
+bool Tower_of_Hanoi::is_valid_move (const State& piece) const{
+    auto cmp {towers[piece.destination].peek().disc_size};
+    return piece.disc_size < cmp;
+}
+
 void Tower_of_Hanoi::visualize() const{
     #if NUMBER_VISUALIZE
     std::ostringstream out{};
@@ -41,6 +46,11 @@ void Tower_of_Hanoi::visualize() const{
 
 void Tower_of_Hanoi::solve(){
     this->visualize();  //we'll first, visualize the tower
+
+    for (auto i{0}; i < max_moves; i++){
+        std::cout << ++moves << ")\n";
+        
+    }
 
     usage("[solve]: NOT IMPLEMENTED YET.\n");
 }

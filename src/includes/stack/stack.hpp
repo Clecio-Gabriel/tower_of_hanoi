@@ -196,6 +196,11 @@ public:
         head = inp;
         size++;
     }
+    void push(Node* input){
+        input->next = head;
+        head = input;
+        size++;
+    }
     void pop(){
         Node* new_head {head->next};
         delete head;
