@@ -25,7 +25,6 @@ class Tower_of_Hanoi{
         for (size_t i {num_discs}; i > 0; i--){
             towers[0].push(State(i, i, i, i, i));
         }
-
     };
 
     

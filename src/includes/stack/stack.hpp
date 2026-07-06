@@ -60,6 +60,7 @@ public:
 
         // [III] COMPARISON METHODS
         bool operator==(const iterator& rhs) const  { return this->m_ptr == rhs.m_ptr; };
+        bool operator!=(const iterator& rhs) const  { return this->m_ptr != rhs.m_ptr; };
 
     };
 
@@ -92,7 +93,9 @@ public:
         reference operator*() const { return m_ptr->data; };
 
         // [III] COMPARISON METHODS
-        bool operator==(const iterator& rhs) const  { return this->m_ptr == rhs.m_ptr; };
+        bool operator==(const const_iterator& rhs) const  { return this->m_ptr == rhs.m_ptr; };
+        bool operator!=(const const_iterator& rhs) const  { return this->m_ptr != rhs.m_ptr; };
+
     };
 
     //=== [I] SPECIAL MEMBERS(5 OF THEM)
@@ -214,6 +217,27 @@ public:
 
         size = 0;
     };
+    void reverse(){
+        if (head==nullptr or head->next==nullptr){
+            return;
+        }
+    
+        Node* prev {nullptr};
+        Node* curr {head};
+        Node* next {head->next};
+
+        while (curr!=nullptr){
+            curr->next = prev;
+            prev = curr;
+
+            curr = next;
+
+            if (next==nullptr) break;
+            next = next->next;
+        }
+
+        head = prev;
+    }
 
     //=== [III] GETTERS
     const_reference peek () const{ return head->data; }

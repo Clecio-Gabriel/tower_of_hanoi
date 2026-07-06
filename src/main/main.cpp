@@ -3,8 +3,7 @@
 #define YES 1
 #define NO 0
 
-#define STACK_TEST YES
-
+#define STACK_TEST NO
 
 int main(){
 
@@ -69,8 +68,8 @@ int main(){
     std::cin >> discs;
 
     Tower_of_Hanoi tower(discs);
+    std::cout << '\n';
     tower.solve();
-
 
     return EXIT_SUCCESS;
 }
