@@ -71,5 +71,7 @@ int main(){
     std::cout << '\n';
     tower.solve();
 
+    std::cout << "Comparisons: " << tower.get_comparisons() << "\n\n";
+
     return EXIT_SUCCESS;
 }

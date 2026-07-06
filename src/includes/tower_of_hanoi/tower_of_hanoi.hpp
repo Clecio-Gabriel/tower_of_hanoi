@@ -12,7 +12,8 @@ void usage(std::string msg = "");
 class Tower_of_Hanoi{
     private:
     sc::Stack<State> towers [3];
-    int peek_times;
+    bool tower_parity;
+    int comparisons;
     int moves;
     int max_moves;
 
@@ -20,15 +21,18 @@ class Tower_of_Hanoi{
 
     // invisible methods
     bool is_valid_move (const State& piece) const; //to check if a move is valid
+    void change_coord_check();  //to change the coordinate that is checking stuff
     void visualize() const; //visualize the tower
 
     public:
 
     Tower_of_Hanoi(size_t num_discs)
-    : peek_times(0), moves(0), coord_check(0)
+    : comparisons(0), moves(0), coord_check(0)
     {
+        auto tp {num_discs % 2 != 0};
+        tower_parity = tp;
         for (size_t i {num_discs}; i > 0; i--){
-            towers[0].push(State(i));
+            towers[0].push(State(i, tower_parity));
         }
 
         max_moves = static_cast<int>(std::pow(2, num_discs));
@@ -37,6 +41,7 @@ class Tower_of_Hanoi{
 
     
     void solve();
+    const int& get_comparisons(){ return comparisons; };
 
 };
 

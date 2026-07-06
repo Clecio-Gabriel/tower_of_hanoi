@@ -1,3 +1,6 @@
 #So that the build directory is not commited
 /build
 /.vscode
+
+#im using it to count the project written lines
+sloc    

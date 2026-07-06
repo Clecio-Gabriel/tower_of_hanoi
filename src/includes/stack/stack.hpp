@@ -24,6 +24,7 @@ public:
     using value_type = T;
     using size_type = size_t;
     using const_reference = const value_type&;
+    using reference = value_type&;
 
 private:
 
@@ -124,6 +125,8 @@ public:
     Stack(const Stack& cpy)  //COPY CONSTRUCTOR
     :   head(nullptr), size(cpy.size)
     { 
+        if (cpy.head == nullptr) return;
+        
         auto cpy_it {cpy.head};
 
         while (cpy_it != nullptr){
@@ -196,11 +199,6 @@ public:
         head = inp;
         size++;
     }
-    void push(Node* input){
-        input->next = head;
-        head = input;
-        size++;
-    }
     void pop(){
         Node* new_head {head->next};
         delete head;
@@ -245,7 +243,7 @@ public:
     }
 
     //=== [III] GETTERS
-    const_reference peek () const{ return head->data; }
+    reference peek () const{ return head->data; }
     bool empty() const { return head==nullptr; }
     size_type get_size() const { return this->size; }
     friend std::ostream &operator<<(std::ostream & os, const Stack<T> &list){
