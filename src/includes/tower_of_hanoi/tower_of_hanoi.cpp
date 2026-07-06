@@ -24,8 +24,9 @@ bool Tower_of_Hanoi::is_valid_move (const State& piece) const{
 void Tower_of_Hanoi::change_coord_check(){
     if (tower_parity)   //odd case
         coord_check = (coord_check + 1) % 3;
-    else{
-        
+    else{               //even case
+        if (coord_check == 0) coord_check = 2;
+        else coord_check--;
     }
 }
 
