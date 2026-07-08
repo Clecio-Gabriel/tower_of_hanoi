@@ -44,7 +44,7 @@ void Tower_of_Hanoi::visualize() const{
             twr.reverse();
 
             for (auto ptr {twr.cbegin()}; ptr != nullptr; ptr++){
-                out << (*ptr).disc_size;
+                out << (*ptr).disc_size << ' ';
             }
         }
 
